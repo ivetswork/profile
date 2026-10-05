@@ -470,3 +470,22 @@ if (navLogo) {
     switchTab('tab-cv');
   });
 }
+
+// ================= MENÚ HAMBURGUESA MÓVIL =================
+const menuToggle = document.getElementById('menu-toggle');
+const navLinks = document.getElementById('nav-links');
+
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    navLinks.classList.toggle('open');
+  });
+
+  // Cierra el menú al pulsar cualquier pestaña o enlace
+  navLinks.querySelectorAll('button, a').forEach(el => {
+    el.addEventListener('click', () => {
+      menuToggle.classList.remove('active');
+      navLinks.classList.remove('open');
+    });
+  });
+}

@@ -16,6 +16,10 @@ const projectsData = {
       "assets/sensingtex-1.jpg",
       "assets/sensingtex-2.jpg",
       "assets/sensingtex-3.jpg"
+    ],
+    mediaExtra: [
+      { type: "image", src: "assets/sensingtex-extra-1.jpg", caption: "Detalle de packaging y manual" },
+      { type: "video", src: "assets/sensingtex-demo.mp4", caption: "Demostración de interacción y sensores" }
     ]
   },
   radiosnovikov: {
@@ -32,6 +36,10 @@ const projectsData = {
     images: [
       "assets/novikov-1.jpg",
       "assets/novikov-2.jpg"
+    ],
+    mediaExtra: [
+      { type: "image", src: "assets/sensingtex-extra-1.jpg", caption: "Detalle de packaging y manual" },
+      { type: "video", src: "assets/sensingtex-demo.mp4", caption: "Demostración de interacción y sensores" }
     ]
   },
   txoko: {
@@ -46,6 +54,10 @@ const projectsData = {
     images: [
       "assets/txoko-1.jpg",
       "assets/txoko-2.jpg"
+    ],
+    mediaExtra: [
+      { type: "image", src: "assets/sensingtex-extra-1.jpg", caption: "Detalle de packaging y manual" },
+      { type: "video", src: "assets/sensingtex-demo.mp4", caption: "Demostración de interacción y sensores" }
     ]
   },
 
@@ -132,12 +144,12 @@ const projectsData = {
   },
   cajamusica: {
     title: "Caja de Música Interactiva",
-    subtitle: "Exploración cinética y sonora controlada por servomotores y encoder.",
+    subtitle: "Dispositivo cinético y sonoro controlado por servomotores y encoder rotatorio.",
     tags: "#ARDUINO · #SERVOMOTORES · #SONIDO TANGIBLE",
     disciplines: "Diseño de Producto, Hardware Interactivo y Cinética.",
     tech: "Arduino, 4 Servomotores, Encoder rotatorio.",
     description: `
-      <p><strong>Concepto:</strong> Dispositivo físico interactivo que traduce composiciones musicales en secuencias mecánicas tangibles mediante un encoder rotatorio.</p>
+      <p><strong>Concepto:</strong> Objeto interactivo que reinterpreta el concepto clásico de caja de música mediante computación física. A través de un encoder rotatorio, el usuario navega entre 4 patrones sonoros preprogramados que oscilan entre la melodía, el ritmo mecánico y el ruido digital. Cuatro servomotores actúan como percutores cinéticos moviendo cascabeles suspendidos a distintas velocidades y frecuencias, traduciendo secuencias de código en una experiencia acústica.</p>
     `,
     images: ["assets/caja-musica-1.jpg"]
   },
@@ -148,7 +160,7 @@ const projectsData = {
     disciplines: "Diseño de Software / Minijuegos, Prototipado DIY y Sensores Tangibles.",
     tech: "Processing, Arduino, Sensores caseros de papel de aluminio y goma EVA.",
     description: `
-      <p><strong>Concepto:</strong> Juego que combina hardware artesanal y software en Processing, modulando la velocidad mediante pulsadores analógicos caseros.</p>
+      <p><strong>Concepto:</strong> Juego que combina hardware artesanal y software en Processing, modulando la velocidad de unas bolas de colores mediante pulsadores analógicos caseros. Cuando la primera bola llega a su destino se desbloquea la siguiente, así hasta completar los 4 colores.</p>
     `,
     images: ["assets/juego-precision-1.jpg"]
   }
@@ -157,7 +169,6 @@ const projectsData = {
 // SELECTOR DE ÁMBITO (PROFESIONAL VS ACADÉMICO)
 const filterButtons = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.project-card');
-const counterLabel = document.getElementById('project-counter');
 const sectionHeading = document.getElementById('section-heading');
 
 filterButtons.forEach(button => {
@@ -166,7 +177,6 @@ filterButtons.forEach(button => {
     button.classList.add('active');
 
     const scope = button.getAttribute('data-scope');
-    let visibleCount = 0;
 
     if (scope === 'profesional') {
       sectionHeading.textContent = "Proyectos Profesionales";
@@ -176,16 +186,12 @@ filterButtons.forEach(button => {
 
     projectCards.forEach(card => {
       const cardScope = card.getAttribute('data-scope');
-      
       if (cardScope === scope) {
         card.classList.remove('hide');
-        visibleCount++;
       } else {
         card.classList.add('hide');
       }
     });
-
-    counterLabel.textContent = `${visibleCount} ${visibleCount === 1 ? 'Proyecto' : 'Proyectos'}`;
   });
 });
 
@@ -215,6 +221,50 @@ projectCards.forEach(card => {
     document.getElementById('modal-description').innerHTML = data.description;
     document.getElementById('modal-disciplines').textContent = data.disciplines;
     document.getElementById('modal-tech').textContent = data.tech;
+
+    // Galería extra
+    const galleryContainer = document.getElementById('modal-gallery');
+    galleryContainer.innerHTML = '';
+
+    if (data.mediaExtra && data.mediaExtra.length > 0) {
+      const heading = document.createElement('h5');
+      heading.className = 'gallery-heading';
+      heading.textContent = 'Documentación visual & proceso';
+      galleryContainer.appendChild(heading);
+
+      const grid = document.createElement('div');
+      grid.className = 'gallery-grid';
+
+      data.mediaExtra.forEach(item => {
+        const figure = document.createElement('figure');
+        figure.className = 'gallery-item';
+
+        if (item.type === 'video') {
+          const video = document.createElement('video');
+          video.src = item.src;
+          video.controls = true;
+          video.playsInline = true;
+          video.className = 'gallery-video';
+          figure.appendChild(video);
+        } else {
+          const img = document.createElement('img');
+          img.src = item.src;
+          img.alt = item.caption || 'Imagen del proyecto';
+          img.className = 'gallery-img';
+          figure.appendChild(img);
+        }
+
+        if (item.caption) {
+          const caption = document.createElement('figcaption');
+          caption.textContent = item.caption;
+          figure.appendChild(caption);
+        }
+
+        grid.appendChild(figure);
+      });
+
+      galleryContainer.appendChild(grid);
+    }
 
     currentProjectImages = data.images;
     currentSlideIndex = 0;
@@ -291,50 +341,54 @@ nextBtn.addEventListener('click', () => {
   updateCarousel();
 });
 
-// ================= EFECTO TYPEWRITER (SOLO TURQUESA) =================
+// ================= EFECTO TYPEWRITER =================
 const words = [
-  "mirar el mundo a través del color",
-  "sentir las texturas del material",
-  "respirar la esencia del espacio",
-  "escuchar el ritmo de la tecnología",
-  "saborear los matices de una idea"
+  "amante de los animales",
+  "amante de la naturaleza",
+  "amante del deporte",
+  "amante de los colores"
 ];
 
 let wordIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
+
 const targetElement = document.getElementById("typewriter-text");
+const targetElementLight = document.getElementById("typewriter-text-light");
 
 function typeEffect() {
   if (!targetElement) return;
 
   const currentWord = words[wordIndex];
+  const currentSub = isDeleting 
+    ? currentWord.substring(0, charIndex - 1) 
+    : currentWord.substring(0, charIndex + 1);
+
+  targetElement.textContent = currentSub;
+  if (targetElementLight) {
+    targetElementLight.textContent = currentSub;
+  }
 
   if (isDeleting) {
-    targetElement.textContent = currentWord.substring(0, charIndex - 1);
     charIndex--;
   } else {
-    targetElement.textContent = currentWord.substring(0, charIndex + 1);
     charIndex++;
   }
 
-  // Velocidades: más lento al escribir, más rápido al borrar
   let typeSpeed = isDeleting ? 45 : 90;
 
-  // Si terminó de escribir la palabra completa
   if (!isDeleting && charIndex === currentWord.length) {
-    typeSpeed = 2200; // Pausa para que se lea cómodamente
+    typeSpeed = 2200;
     isDeleting = true;
   } else if (isDeleting && charIndex === 0) {
     isDeleting = false;
-    wordIndex = (wordIndex + 1) % words.length; // Pasa a la siguiente palabra
-    typeSpeed = 400; // Breve pausa antes de empezar la siguiente
+    wordIndex = (wordIndex + 1) % words.length;
+    typeSpeed = 400;
   }
 
   setTimeout(typeEffect, typeSpeed);
 }
 
-// Inicia el efecto typewriter
 document.addEventListener("DOMContentLoaded", typeEffect);
 
 // ANIMACIÓN FADE UP AL HACER SCROLL (INTERSECTION OBSERVER)
@@ -345,13 +399,74 @@ document.addEventListener("DOMContentLoaded", () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("is-visible");
-        obs.unobserve(entry.target); // Solo se anima una vez
+        obs.unobserve(entry.target);
       }
     });
   }, {
-    threshold: 0.15, // Se activa al mostrarse el 15% del elemento
+    threshold: 0.15,
     rootMargin: "0px 0px -50px 0px"
   });
 
   animatedElements.forEach(el => observer.observe(el));
 });
+
+// ================= MÁSCARA DIFUMINADA HERO =================
+const heroSection = document.getElementById('hero-section');
+const heroReveal = document.getElementById('hero-reveal');
+
+if (heroSection && heroReveal) {
+  const radius = 240;
+  heroReveal.style.setProperty('--reveal-radius', `${radius}px`);
+
+  heroSection.addEventListener('mousemove', (e) => {
+    const rect = heroSection.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    heroReveal.style.setProperty('--reveal-x', `${x}px`);
+    heroReveal.style.setProperty('--reveal-y', `${y}px`);
+    heroReveal.classList.add('active');
+  });
+
+  heroSection.addEventListener('mouseleave', () => {
+    heroReveal.classList.remove('active');
+  });
+}
+
+const tabButtons = document.querySelectorAll('.nav-tab-btn');
+const tabViews = document.querySelectorAll('.tab-view');
+const navLogo = document.getElementById('nav-logo');
+
+function switchTab(targetId) {
+  tabViews.forEach(view => {
+    if (view.id === targetId) {
+      view.classList.add('active');
+    } else {
+      view.classList.remove('active');
+    }
+  });
+
+  tabButtons.forEach(btn => {
+    if (btn.getAttribute('data-tab') === targetId) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+tabButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const targetTab = btn.getAttribute('data-tab');
+    switchTab(targetTab);
+  });
+});
+
+if (navLogo) {
+  navLogo.addEventListener('click', (e) => {
+    e.preventDefault();
+    switchTab('tab-cv');
+  });
+}

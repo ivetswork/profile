@@ -2,7 +2,7 @@
   --bg: #0b0b0c;
   --surface: #141416;
   --text-main: #f5f5f7;
-  --text-muted: #9e9ea8; /* Gris neutro y homogéneo para todos los párrafos */
+  --text-muted: #9e9ea8;
   --cyan: #00f5d4;
   --cyan-glow: rgba(0, 245, 212, 0.22);
   --border: rgba(255, 255, 255, 0.1);
@@ -17,11 +17,11 @@
 }
 
 body {
-  background-color: var(--bg);
+  background-color: #070708;
   color: var(--text-main);
   font-family: var(--font-body);
   line-height: 1.6;
-  padding: 0 6%;
+  padding: 0;
 }
 
 /* ================= NAVBAR ================= */
@@ -33,18 +33,11 @@ body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 1.2rem 8%; /* 8% de margen lateral idéntico al resto de secciones */
+  padding: 1.2rem 8%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-}
-
-/* Contenedor interno para alinear con el ancho máximo del contenido */
-.navbar > a,
-.navbar > nav {
-  display: flex;
-  align-items: center;
 }
 
 .logo {
@@ -84,25 +77,46 @@ nav a:hover {
   border-color: var(--cyan);
 }
 
-/* ================= HERO & TYPEWRITER ================= */
-.hero {
-  padding: 5rem 0 4rem;
-  max-width: 900px;
+/* ================= 1. HERO INTERACTIVO CON MÁSCARA DIFUMINADA ================= */
+.section-hero {
+  position: relative;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  padding: 4rem 8%;
+  background: radial-gradient(circle at 10% 20%, rgba(0, 245, 212, 0.05) 0%, transparent 40%), #070708;
+  overflow: hidden;
+}
+
+.hero-inner {
+  max-width: 1350px;
+  width: 100%;
+}
+
+.hero-dark {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-title {
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(2.4rem, 4.2vw, 3.8rem);
   font-weight: 700;
-  line-height: 1.18;
-  letter-spacing: -1px;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
   margin-bottom: 1.5rem;
 }
 
+.hero-lead {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--text-main);
+}
+
 .typewriter-wrap {
-  display: inline-flex;
-  align-items: baseline;
-  min-height: 1.2em;
+  display: inline-block;
+  min-height: 1.25em;
+  white-space: nowrap;
 }
 
 .typewriter-text {
@@ -110,7 +124,6 @@ nav a:hover {
   font-weight: 700;
   letter-spacing: -0.5px;
   text-shadow: 0 0 18px var(--cyan-glow);
-  transition: transform 0.2s ease;
 }
 
 .typewriter-cursor {
@@ -132,40 +145,119 @@ nav a:hover {
   max-width: 650px;
 }
 
-@media (max-width: 600px) {
-  .hero-break {
-    display: none;
-  }
+/* Capa blanca reveladora */
+.hero-reveal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 4rem 8%;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+
+  -webkit-mask-image: radial-gradient(
+    circle var(--reveal-radius, 240px) at var(--reveal-x, -1000px) var(--reveal-y, -1000px),
+    black 60%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    circle var(--reveal-radius, 240px) at var(--reveal-x, -1000px) var(--reveal-y, -1000px),
+    black 60%,
+    transparent 100%
+  );
 }
 
-/* ================= SECCIÓN ABOUT / CV ================= */
-.about-section {
-  padding-bottom: 6rem;
-  border-top: 1px solid var(--border);
-  padding-top: 4rem;
+.hero-reveal.active {
+  opacity: 1;
 }
 
-.about-grid {
+.hero-light .hero-lead {
+  color: #111114;
+}
+
+.hero-light .typewriter-light {
+  color: #009e86;
+  text-shadow: none;
+}
+
+.hero-light .typewriter-cursor-light {
+  color: #009e86;
+}
+
+.hero-light .hero-sub-light {
+  color: #555560;
+}
+
+.reveal-character {
+  position: absolute;
+  right: 5%;
+  bottom: 0;
+  height: 85%;
+  max-height: 520px;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ================= CONTENEDORES GENERALES ================= */
+.section-panel {
+  width: 100%;
+  padding: 6.5rem 8%;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.standard-container {
+  max-width: 1380px;
+  margin: 0 auto;
+}
+
+.section-eyebrow {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--cyan);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+/* ================= SCROLL 1: PERFIL & MANIFIESTO BIO ================= */
+.section-bio-profile {
+  background: 
+    radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 85% 75%, rgba(0, 245, 212, 0.06) 0%, transparent 60%),
+    #131418;
+}
+
+.bio-profile-wrapper {
+  max-width: 1320px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: 340px 1fr;
-  gap: 3.5rem;
-  align-items: start;
+  grid-template-columns: 360px 1fr;
+  gap: 5rem;
+  align-items: center;
 }
 
-.about-profile {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  overflow: hidden;
-  padding: 1.5rem;
-  position: sticky;
-  top: 5.5rem;
+.profile-card-clean {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .profile-img-wrap {
   width: 100%;
   aspect-ratio: 1/1;
-  border-radius: 14px;
+  border-radius: 16px;
   overflow: hidden;
   margin-bottom: 1.5rem;
 }
@@ -178,36 +270,37 @@ nav a:hover {
 
 .profile-details h3 {
   font-family: var(--font-heading);
-  font-size: 1.3rem;
+  font-size: 1.35rem;
+  color: #ffffff;
 }
 
 .role-highlight {
   color: var(--cyan);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-bottom: 1.2rem;
+  margin: 0.3rem 0 1.2rem;
 }
 
 .quick-facts {
   list-style: none;
   font-size: 0.85rem;
-  color: var(--text-muted);
+  color: #a4a4b2;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
   margin-bottom: 1.5rem;
   border-top: 1px solid var(--border);
-  padding-top: 1rem;
+  padding-top: 1.1rem;
 }
 
 .quick-facts span {
-  color: var(--text-main);
+  color: #ffffff;
   font-weight: 500;
 }
 
 .quick-facts a {
-  color: var(--text-muted);
+  color: #a4a4b2;
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -220,30 +313,305 @@ nav a:hover {
   display: block;
   width: 100%;
   text-align: center;
-  background: transparent;
+  background: rgba(0, 245, 212, 0.08);
   color: var(--cyan);
   border: 1px solid var(--cyan);
-  padding: 0.6rem 1rem;
+  padding: 0.7rem 1rem;
   border-radius: 99px;
   text-decoration: none;
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
-  font-family: var(--font-body);
   transition: all 0.3s ease;
 }
 
 .btn-download-cv:hover {
   background: var(--cyan);
   color: #000;
-  box-shadow: 0 0 15px var(--cyan-glow);
+  box-shadow: 0 0 20px var(--cyan-glow);
 }
 
-/* ================= HERRAMIENTAS & TECNOLOGÍAS (BARRA LATERAL) ================= */
-.profile-skills {
-  margin-top: 1.8rem;
-  border-top: 1px solid var(--border);
-  padding-top: 1.4rem;
+/* Columna derecha de Bio */
+.bio-text-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.bio-intro-lead {
+  font-family: var(--font-heading);
+  font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+  line-height: 1.45;
+  color: #e5e5ed;
+  margin-bottom: 1.5rem;
+}
+
+.bio-intro-lead strong {
+  color: #ffffff;
+}
+
+.bio-text p {
+  color: #a6a6b8;
+  font-size: 1.08rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.bio-quote-block {
+  background: rgba(0, 245, 212, 0.04);
+  border-left: 3px solid var(--cyan);
+  padding: 1.4rem 1.6rem;
+  border-radius: 0 14px 14px 0;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.quote-symbol {
+  color: var(--cyan);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.bio-quote-block p {
+  margin: 0;
+  color: #d1d1dc;
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
+/* ================= SCROLL 2: FORMACIÓN ACADÉMICA EN TARJETAS ================= */
+/* ================= LÍNEA DEL TIEMPO DE FORMACIÓN ================= */
+.section-timeline {
+  background: 
+    radial-gradient(circle at 10% 80%, rgba(0, 245, 212, 0.04) 0%, transparent 50%),
+    #0f1013;
+  padding: 7rem 8%;
+}
+
+.timeline-container {
+  max-width: 950px; /* Ancho optimizado para una lectura cómoda de la línea */
+  margin: 0 auto;
+}
+
+.timeline-track {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding-left: 2rem;
+}
+
+/* La guía vertical de la línea */
+.timeline-track::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 2px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--cyan) 0%, rgba(0, 245, 212, 0.25) 75%, rgba(255, 255, 255, 0.05) 100%);
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+
+/* El punto conector iluminado en la línea */
+.timeline-node {
+  position: absolute;
+  left: -2rem;
+  top: 1.8rem;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--cyan);
+  box-shadow: 0 0 12px var(--cyan), 0 0 0 4px #0f1013;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item:hover .timeline-dot {
+  transform: scale(1.4);
+  box-shadow: 0 0 18px var(--cyan), 0 0 0 4px #0f1013;
+}
+
+/* Tarjeta de contenido en la línea */
+.timeline-card {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 18px;
+  padding: 1.8rem 2.2rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.timeline-card:hover {
+  transform: translateX(8px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(0, 245, 212, 0.35);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+.timeline-dates {
+  display: inline-block;
+  font-size: 0.78rem;
+  color: var(--cyan);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.4rem;
+}
+
+.timeline-title {
+  font-family: var(--font-heading);
+  font-size: 1.22rem;
+  color: #ffffff;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-school {
+  display: block;
+  font-size: 0.88rem;
+  color: #c4c4d2;
+  margin-bottom: 1rem;
+}
+
+.timeline-desc {
+  font-size: 0.92rem;
+  color: #9292a0;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Ajustes responsive en móviles */
+@media (max-width: 768px) {
+  .timeline-track {
+    padding-left: 1.5rem;
+    gap: 2rem;
+  }
+  .timeline-node {
+    left: -1.5rem;
+  }
+  .timeline-card {
+    padding: 1.4rem 1.4rem;
+  }
+}
+
+.section-header-block {
+  margin-bottom: 3.5rem;
+}
+
+.section-heading-clean {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  color: #ffffff;
+}
+
+.education-grid-modern {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.edu-card-item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 4px solid var(--cyan);
+  border-radius: 16px;
+  padding: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.edu-card-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.25);
+  border-left-color: var(--cyan);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.edu-card-top {
+  margin-bottom: 1.2rem;
+}
+
+.role-dates {
+  font-size: 0.8rem;
+  color: var(--cyan);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.card-item-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.role-position {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #d1d1dc;
+  margin-top: 0.35rem;
+}
+
+.card-desc {
+  font-size: 0.95rem;
+  color: #9e9ea8;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ================= SCROLL 3: EXPERIENCIA & HABILIDADES ================= */
+.section-skills-exp {
+  background-color: #121317;
+}
+
+.panel-container {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 4rem;
+  align-items: stretch;
+  max-width: 1380px;
+  margin: 0 auto;
+}
+
+.side-col {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 5.5rem;
+  height: fit-content;
+  align-self: start;
+}
+
+.skills-card-clean {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 1.8rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
 }
 
 .skills-sidebar-label {
@@ -263,31 +631,20 @@ nav a:hover {
   margin-bottom: 1rem;
 }
 
-/* ================= HERRAMIENTAS & TECNOLOGÍAS SIN BOXES ================= */
-.profile-skills .skills-rating-grid {
+.skills-rating-grid {
   display: flex;
   flex-direction: column;
-  gap: 1.7rem; /* Aumenta este valor si quieres aún más separación (ej. 1.2rem - 1.4rem) */
-  margin-top: 1.4rem;
+  gap: 0.55rem;
+  margin-top: 1rem;
 }
 
-.profile-skills .skill-row,
 .skill-row {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 0.8rem; /* Separación horizontal entre la palabra y los puntos */
-  padding: 0.15rem 0 !important; /* Espacio extra vertical */
+  gap: 0.8rem;
 }
 
-.profile-skills .skill-row:hover,
-.skill-row:hover {
-  background: transparent !important;
-  border: none !important;
-  transform: none !important;
-}
-
-.profile-skills .skill-name,
 .skill-name {
   font-size: 0.88rem;
   color: var(--text-main);
@@ -295,7 +652,6 @@ nav a:hover {
   line-height: 1;
 }
 
-/* Puntos integrados en línea */
 .rating-dots {
   display: inline-flex;
   gap: 0.35rem;
@@ -314,28 +670,15 @@ nav a:hover {
   box-shadow: 0 0 6px var(--cyan-glow);
 }
 
-/* ================= COLUMNA PRINCIPAL DE CONTENIDO ================= */
-.bio-text p {
-  color: var(--text-muted);
-  font-size: 1.05rem;
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
-}
-
-.bio-text strong {
-  color: var(--text-main);
-}
-
-/* PANELES DE CONTENIDO / RECUADROS PRINCIPALES */
+/* Columna de Experiencia */
 .content-box-panel {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 2rem;
+  padding: 2.2rem;
   margin-bottom: 0rem;
 }
 
-/* Títulos principales: Grandes, en negrita y turquesa */
 .section-box-title {
   font-family: var(--font-heading);
   font-size: 1.55rem;
@@ -347,25 +690,100 @@ nav a:hover {
   padding-bottom: 0.8rem;
 }
 
-/* LISTADOS INTERNOS DE EDUCACIÓN & DISEÑO */
-.education-list,
+/* ================= ACORDEONES EXPERIENCIA CREATIVA ================= */
 .design-roles-list {
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  gap: 1.2rem;
+}
+
+.creative-accordion {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 3px solid var(--cyan);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.creative-accordion:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.2);
+  border-left-color: var(--cyan);
+}
+
+.creative-accordion[open] {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(0, 245, 212, 0.3);
+  border-left-color: var(--cyan);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.creative-summary {
+  padding: 1.4rem 1.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.creative-summary::-webkit-details-marker {
+  display: none;
+}
+
+.creative-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  width: 100%;
+}
+
+/* Icono dinámico + / - */
+.creative-summary::after {
+  content: '+';
+  color: var(--cyan);
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-left: 1.5rem;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.creative-accordion[open] .creative-summary::after {
+  content: '−';
+  transform: rotate(180deg);
+}
+
+.creative-content {
+  padding: 0.5rem 1.6rem 1.6rem 1.6rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  animation: fadeInAccordion 0.35s ease;
+}
+
+@keyframes fadeInAccordion {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .design-role-card {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-left: 3px solid var(--cyan);
-  border-radius: 8px;
-  padding: 1.1rem 1.3rem;
+  border-radius: 12px;
+  padding: 1.4rem;
   transition: background 0.2s, border-color 0.2s;
 }
 
 .design-role-card:hover {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.18);
 }
 
@@ -384,22 +802,6 @@ nav a:hover {
   flex-wrap: wrap;
 }
 
-/* Subtítulos: Nombres de empresa o grado en blanco más pequeño */
-.card-item-title {
-  font-family: var(--font-heading);
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #f5f5f7;
-  margin: 0;
-  line-height: 1.3;
-}
-
-.role-dates {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  font-weight: 400;
-}
-
 .role-tag {
   font-size: 0.65rem;
   text-transform: uppercase;
@@ -408,24 +810,7 @@ nav a:hover {
   font-weight: 600;
 }
 
-.role-position {
-  display: block;
-  font-size: 0.88rem;
-  font-weight: 500;
-  color: #c2c2cb;
-  margin: 0.25rem 0 0.5rem;
-}
-
-/* Párrafo normal: gris plano unificado */
-.card-desc {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-  margin: 0;
-}
-
-/* ================= TRAYECTORIA OPERATIVA & RETAIL ================= */
-/* Espacio limpio entre el bloque de diseño y el de trayectoria operativa */
+/* Retail & Trayectoria Operativa */
 .design-experience-block {
   margin-bottom: 3.5rem !important;
 }
@@ -434,58 +819,16 @@ nav a:hover {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 2rem;
+  padding: 2.2rem;
   margin-top: 3.5rem;
   margin-bottom: 3.5rem;
 }
 
-.retail-header h4 {
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-  color: var(--text-main);
-}
-
 .retail-intro {
   color: var(--text-muted);
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   margin-bottom: 1.5rem;
-  line-height: 1.6;
-}
-
-.retail-paragraphs {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 1.8rem;
-}
-
-.retail-paragraphs p {
-  font-size: 0.92rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-}
-
-.retail-paragraphs strong {
-  color: var(--cyan);
-  font-weight: 500;
-}
-
-.retail-companies {
-  border-top: 1px solid var(--border);
-  padding-top: 1.4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.companies-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  display: block;
+  line-height: 1.65;
 }
 
 .companies-accordion-grid {
@@ -516,7 +859,6 @@ nav a:hover {
   cursor: pointer;
   list-style: none;
   user-select: none;
-  transition: color 0.2s;
 }
 
 .company-summary::-webkit-details-marker {
@@ -538,26 +880,18 @@ nav a:hover {
   text-transform: uppercase;
   letter-spacing: 0.6px;
   color: #6a6a75;
-  line-height: 1.2;
 }
 
 .company-name {
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--text-main);
-  transition: color 0.2s;
-  line-height: 1.2;
 }
 
 .company-badge-loc {
   font-size: 0.75rem;
   color: var(--text-muted);
   font-weight: 400;
-  line-height: 1.3;
-}
-
-.company-summary:hover .company-name {
-  color: var(--cyan);
 }
 
 .company-summary::after {
@@ -566,7 +900,6 @@ nav a:hover {
   font-size: 1.15rem;
   font-weight: 600;
   margin-left: 0.8rem;
-  line-height: 1;
 }
 
 .company-accordion[open] .company-summary::after {
@@ -596,14 +929,130 @@ nav a:hover {
   margin: 0;
 }
 
-/* ================= VISIÓN ESTRATÉGICA & RETOS ================= */
-.strategic-vision-box {
-  margin-top: 2.5rem;
+/* Visión Estratégica */
+/* ================= SCROLL 4: VISIÓN ESTRATÉGICA INDEPENDIENTE ================= */
+.section-strategic-vision {
+  background: 
+    radial-gradient(circle at 15% 30%, rgba(0, 245, 212, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 85% 70%, rgba(255, 255, 255, 0.03) 0%, transparent 45%),
+    #131418; /* Mismo tono grafito suave que da descanso visual */
+  padding: 7.5rem 8%;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.vision-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  align-items: stretch;
+}
+
+.vision-card-editorial {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  border-top: 1px solid var(--border);
-  padding-top: 2rem;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.vision-card-editorial:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 245, 212, 0.35);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.vision-tag-pill {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--cyan);
+  background: rgba(0, 245, 212, 0.08);
+  border: 1px solid rgba(0, 245, 212, 0.25);
+  padding: 0.35rem 0.85rem;
+  border-radius: 99px;
+  margin-bottom: 1.5rem;
+}
+
+.vision-heading-lg {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 2vw, 1.85rem);
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.35;
+  margin-bottom: 1.5rem;
+}
+
+.vision-text-lead {
+  font-size: 1.05rem;
+  color: #a4a4b5;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.vision-text-lead strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Lista interactiva de intereses futuros */
+.vision-interactive-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.vision-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 0.95rem;
+  color: #a4a4b5;
+  line-height: 1.6;
+}
+
+.vision-item-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+  margin-top: 0.55rem;
+  flex-shrink: 0;
+}
+
+.vision-list-item strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Responsive para tablets y móviles */
+@media (max-width: 960px) {
+  .vision-container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .vision-card-editorial {
+    padding: 2.2rem 1.8rem;
+  }
+}
+
+.companies-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
 }
 
 .vision-block h4 {
@@ -617,7 +1066,6 @@ nav a:hover {
   font-size: 0.92rem;
   color: var(--text-muted);
   line-height: 1.7;
-  margin-bottom: 0.9rem;
 }
 
 .vision-block strong {
@@ -654,10 +1102,18 @@ nav a:hover {
   color: var(--text-main);
 }
 
-/* ================= SECCIÓN PROYECTOS & TABS ================= */
+/* ================= 4. SECCIÓN PROYECTOS ================= */
 .portfolio-section {
-  padding-top: 4rem;
-  border-top: 1px solid var(--border);
+  padding: 6.5rem 8% 4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: #08080a;
+}
+
+.section-header-wrap,
+.projects-grid {
+  max-width: 1380px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .section-header-wrap {
@@ -671,22 +1127,9 @@ nav a:hover {
   gap: 1.5rem;
 }
 
-.section-title-wrap {
-  display: flex;
-  align-items: baseline;
-  gap: 1rem;
-}
-
 .section-title-wrap h2 {
   font-family: var(--font-heading);
   font-size: 2rem;
-}
-
-.project-count {
-  color: var(--cyan);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 .filter-group {
@@ -721,12 +1164,11 @@ nav a:hover {
   box-shadow: 0 0 15px var(--cyan-glow);
 }
 
-/* GRID DE PROYECTOS */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 2.5rem;
-  margin-bottom: 8rem;
+  margin-bottom: 6rem;
 }
 
 .project-card {
@@ -905,7 +1347,6 @@ nav a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0.2s;
 }
 
 .modal-close:hover {
@@ -953,7 +1394,6 @@ nav a:hover {
   border-radius: 50%;
   cursor: pointer;
   font-size: 1.2rem;
-  transition: 0.3s;
 }
 
 .carousel-btn:hover {
@@ -979,7 +1419,6 @@ nav a:hover {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.4);
   cursor: pointer;
-  transition: 0.3s;
 }
 
 .indicator-dot.active {
@@ -1046,6 +1485,48 @@ nav a:hover {
   font-size: 0.9rem;
 }
 
+.modal-gallery {
+  margin-top: 2rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+}
+
+.gallery-heading {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  color: var(--cyan);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1.2rem;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.2rem;
+}
+
+.gallery-item {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.gallery-img,
+.gallery-video {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #000;
+  object-fit: cover;
+}
+
+.gallery-item figcaption {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
 /* ================= FOOTER ================= */
 .site-footer {
   border-top: 1px solid var(--border);
@@ -1063,7 +1544,6 @@ nav a:hover {
   font-family: var(--font-heading);
   font-size: clamp(1.8rem, 4vw, 2.5rem);
   margin: 1.2rem 0;
-  line-height: 1.2;
 }
 
 .footer-cta p {
@@ -1108,7 +1588,6 @@ nav a:hover {
   color: var(--text-muted);
   text-decoration: none;
   font-size: 0.85rem;
-  transition: color 0.2s;
 }
 
 .footer-links a:hover {
@@ -1120,14 +1599,38 @@ nav a:hover {
   font-size: 0.8rem;
 }
 
+/* ================= ANIMACIÓN FADE UP ================= */
+.animate-fade-up {
+  opacity: 0;
+  transform: translateY(45px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.animate-fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ================= RESPONSIVE ================= */
-@media (max-width: 900px) {
-  .about-grid {
+@media (max-width: 1024px) {
+  .bio-profile-wrapper {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+  .panel-container {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
-  .about-profile {
+  .side-col {
     position: static;
+  }
+}
+
+@media (max-width: 820px) {
+  .education-grid-modern {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1154,143 +1657,771 @@ nav a:hover {
   }
 }
 
-/* ================= ESTRUCTURA POR PANTALLAS / SECCIONES ================= */
+/* ================= TEMA CLARO EDITORIAL INTEGRAL ================= */
 body {
-  background-color: #070708; /* Fondo base muy sobrio */
-  color: var(--text-main);
-  font-family: var(--font-body);
-  line-height: 1.6;
-  padding: 0; /* Las secciones ocupan el 100% del ancho */
+  background-color: #f7f8fa !important;
+  color: #1c1d22 !important;
 }
 
-/* 1. HERO SECTION (Pantalla 1) */
+/* 1. NAVBAR CLARA */
+.navbar {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.logo {
+  color: #111114 !important;
+}
+
+nav a {
+  color: #555562 !important;
+}
+
+nav a:hover {
+  color: #00a896 !important;
+}
+
+.btn-contact {
+  border-color: rgba(0, 0, 0, 0.15) !important;
+  color: #111114 !important;
+}
+
+.btn-contact:hover {
+  background-color: #00a896 !important;
+  color: #ffffff !important;
+  border-color: #00a896 !important;
+}
+
+/* ================= HERO EN TURQUESA PASTEL ================= */
 .section-hero {
-  min-height: calc(100vh - 80px);
-  display: flex;
-  align-items: center;
-  padding: 4rem 8%;
-  background: radial-gradient(circle at 10% 20%, rgba(0, 245, 212, 0.05) 0%, transparent 40%),
-              #070708;
+  background: 
+    radial-gradient(circle at 85% 20%, rgba(255, 255, 255, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 10% 80%, rgba(0, 168, 150, 0.15) 0%, transparent 45%),
+    #dcf5f0 !important; /* Base turquesa pastel mentolado, suave y luminoso */
 }
 
-/* 1. Ensanchamos el contenedor para dar espacio a frases completas */
-.hero,
-.hero-inner {
-  max-width: 1350px; /* Ampliado para que no corte antes de tiempo */
-  width: 100%;
+/* Textos sobre el fondo turquesa pastel */
+.hero-dark .hero-lead {
+  color: #173b36 !important; /* Verde bosque profundo para máxima legibilidad */
 }
 
-/* 2. Ajustamos sutilmente el tamaño de letra para que no fuerce el salto */
-.hero-title {
-  font-family: var(--font-heading);
-  font-size: clamp(3rem, 5vw, 4.5rem); /* Escala suavemente con la pantalla */
-  font-weight: 700;
-  line-height: 1.25;
-  letter-spacing: -0.5px;
-  margin-bottom: 1.5rem;
+.hero-dark .typewriter-text {
+  color: #007a6c !important; /* Turquesa esmeralda con presencia */
+  text-shadow: none !important;
 }
 
-/* 3. Evitamos que el bloque del typewriter se rompa a mitad de frase */
-.typewriter-wrap {
-  display: inline-flex;
-  align-items: baseline;
-  min-height: 1.2em;
-  white-space: nowrap; /* Impide que la frase se parta en dos líneas */
+.hero-dark .typewriter-cursor {
+  color: #007a6c !important;
 }
 
-/* 2. CONTENEDORES DE SECCIÓN */
-.section-panel {
-  width: 100%;
-  padding: 6.5rem 8%;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+.hero-dark .hero-sub {
+  color: #3b5c56 !important;
 }
 
-/* Tonos sutiles diferenciados por sección */
-.section-profile-edu {
-  background-color: #0e0e11; /* Grafito neutro elegante */
+/* La linterna reveladora muestra un círculo blanco nítido con el personaje */
+.hero-reveal {
+  background-color: #ffffff !important;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.08) inset;
 }
 
+.hero-light .hero-lead {
+  color: #111114 !important;
+}
+
+.hero-light .typewriter-light {
+  color: #00a896 !important;
+}
+
+.hero-light .typewriter-cursor-light {
+  color: #00a896 !important;
+}
+
+.hero-light .hero-sub-light {
+  color: #555562 !important;
+}
+
+/* ================= PALETA ESTANDARIZADA (5 COLORES) =================
+   --c-turquesa-claro:  #dcf5f0 (Fondos pastel)
+   --c-turquesa-oscuro: #008f7a (Resaltados, fechas, acentos)
+   --c-blanco:          #ffffff (Superficies y fondos base)
+   --c-negro:           #111114 (Títulos y textos con fuerza)
+   --c-gris-claro:      #e6e8ec (Bordes, separadores, badges apagados)
+   --c-gris-texto:      #5d5f69 (Subtítulos y descripciones legibles)
+======================================================================= */
+
+/* ================= 1. SOBRE MÍ (BLANCO) ================= */
+.section-bio-profile {
+  background: #ffffff !important;
+  border-top: 1px solid #e6e8ec !important;
+}
+
+.section-bio-profile .profile-card-clean {
+  background: #ffffff !important;
+  border: 1px solid #e6e8ec !important;
+  box-shadow: 0 10px 30px rgba(17, 17, 20, 0.04) !important;
+}
+
+.profile-details h3 {
+  color: #111114 !important;
+}
+
+.role-highlight {
+  color: #008f7a !important;
+}
+
+.quick-facts {
+  border-top: 1px solid #e6e8ec !important;
+  color: #5d5f69 !important;
+}
+
+.quick-facts span {
+  color: #111114 !important;
+}
+
+.quick-facts a {
+  color: #5d5f69 !important;
+}
+
+.btn-download-cv {
+  background: #dcf5f0 !important;
+  border: 1px solid #008f7a !important;
+  color: #008f7a !important;
+}
+
+.btn-download-cv:hover {
+  background: #008f7a !important;
+  color: #ffffff !important;
+}
+
+.bio-intro-lead {
+  color: #111114 !important;
+}
+
+.bio-intro-lead strong {
+  color: #111114 !important;
+}
+
+.bio-text p {
+  color: #5d5f69 !important;
+}
+
+.bio-quote-block {
+  background: #dcf5f0 !important;
+  border-left: 4px solid #008f7a !important;
+}
+
+.bio-quote-block p {
+  color: #111114 !important;
+}
+
+.quote-symbol {
+  color: #008f7a !important;
+}
+
+/* ================= 2. FORMACIÓN ACADÉMICA (TURQUESA PASTEL CLARO) ================= */
+.section-timeline {
+  background: #dcf5f0 !important;
+  border-top: 1px solid #e6e8ec !important;
+}
+
+.section-timeline .section-heading-clean {
+  color: #111114 !important;
+}
+
+.section-timeline .section-eyebrow {
+  color: #008f7a !important;
+}
+
+.timeline-track::before {
+  background: linear-gradient(180deg, #008f7a 0%, #e6e8ec 100%) !important;
+}
+
+.timeline-dot {
+  background-color: #008f7a !important;
+  box-shadow: 0 0 0 4px #dcf5f0 !important;
+}
+
+.timeline-card {
+  background: #ffffff !important;
+  border: 1px solid #e6e8ec !important;
+  box-shadow: 0 8px 25px rgba(17, 17, 20, 0.04) !important;
+}
+
+.timeline-card:hover {
+  border-color: #008f7a !important;
+  box-shadow: 0 12px 30px rgba(17, 17, 20, 0.08) !important;
+}
+
+.timeline-dates {
+  color: #008f7a !important;
+}
+
+.timeline-title {
+  color: #111114 !important;
+}
+
+.timeline-school {
+  color: #5d5f69 !important;
+}
+
+.timeline-desc {
+  color: #5d5f69 !important;
+}
+
+/* ================= 3. EXPERIENCIA CREATIVA (BLANCO) ================= */
 .section-skills-exp {
-  background-color: #121317; /* Ébano profundo con un toque frío */
+  background: #ffffff !important;
+  border-top: 1px solid #e6e8ec !important;
 }
 
-.section-projects {
-  background-color: #08080a;
+.section-skills-exp .section-eyebrow {
+  color: #008f7a !important;
 }
 
-/* Cuadrícula de 2 columnas consistente en secciones 2 y 3 */
-.panel-container {
-  display: grid;
-  grid-template-columns: 340px 1fr;
-  gap: 4rem;
-  align-items: stretch;
-  max-width: 1380px;
-  margin: 0 auto;
+.section-skills-exp .section-heading-clean {
+  color: #111114 !important;
 }
 
-/* ================= TARJETAS LATERALES LIMPIAS ================= */
-.profile-card-clean,
 .skills-card-clean {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  padding: 1.8rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(8px);
+  background: #ffffff !important;
+  border: 1px solid #e6e8ec !important;
+  box-shadow: 0 8px 25px rgba(17, 17, 20, 0.03) !important;
+}
+
+.skills-sidebar-label {
+  color: #008f7a !important;
+}
+
+.skills-sidebar-sub {
+  color: #5d5f69 !important;
+}
+
+.skill-row .skill-name {
+  color: #111114 !important;
+}
+
+.dot-rating {
+  background-color: #e6e8ec !important;
+}
+
+.dot-rating.active {
+  background-color: #008f7a !important;
+}
+
+.content-box-panel {
+  background: #ffffff !important;
+  border: 1px solid #e6e8ec !important;
+  box-shadow: 0 6px 20px rgba(17, 17, 20, 0.02) !important;
+}
+
+.creative-accordion {
+  background: #ffffff !important;
+  border: 1px solid #e6e8ec !important;
+  border-left: 4px solid #008f7a !important;
+}
+
+.creative-accordion[open] {
+  background: #ffffff !important;
+  border-color: #e6e8ec !important;
+  border-left-color: #008f7a !important;
+  box-shadow: 0 8px 20px rgba(17, 17, 20, 0.04) !important;
+}
+
+.creative-accordion .card-item-title {
+  color: #111114 !important;
+}
+
+.creative-accordion .role-dates {
+  color: #008f7a !important;
+}
+
+.creative-accordion .role-position {
+  color: #5d5f69 !important;
+}
+
+.creative-accordion .role-tag {
+  color: #008f7a !important;
+  background: #dcf5f0 !important;
+  border: 1px solid #008f7a !important;
+}
+
+.creative-summary::after {
+  color: #008f7a !important;
+}
+
+.creative-content {
+  border-top: 1px solid #e6e8ec !important;
+}
+
+.creative-content .card-desc {
+  color: #5d5f69 !important;
+}
+
+.creative-content .card-desc strong {
+  color: #111114 !important;
+}
+
+/* ================= 4. EXPERIENCIA EN OTROS SECTORES (TURQUESA PASTEL CLARO) ================= */
+.retail-full-box {
+  background: #dcf5f0 !important;
+  border: 1px solid #e6e8ec !important;
+  border-radius: 22px;
+  box-shadow: 0 12px 35px rgba(17, 17, 20, 0.04) !important;
+}
+
+.retail-full-box .section-eyebrow {
+  color: #008f7a !important;
+}
+
+.retail-full-box .section-heading-clean {
+  color: #111114 !important;
+}
+
+.retail-intro {
+  color: #5d5f69 !important;
+}
+
+.retail-full-box .company-accordion {
+  background: #ffffff !important;
+  border: 1px solid #e6e8ec !important;
+  box-shadow: 0 4px 15px rgba(17, 17, 20, 0.03) !important;
+}
+
+.retail-full-box .company-accordion[open] {
+  border-color: #008f7a !important;
+}
+
+.retail-full-box .company-name {
+  color: #111114 !important;
+}
+
+.retail-full-box .company-badge-loc {
+  color: #5d5f69 !important;
+}
+
+.retail-full-box .company-summary::after,
+.retail-full-box .company-period {
+  color: #008f7a !important;
+}
+
+.retail-full-box .company-content {
+  border-top: 1px solid #e6e8ec !important;
+}
+
+.retail-full-box .company-content p {
+  color: #5d5f69 !important;
+}
+
+/* ================= 5. VISIÓN ESTRATÉGICA (BLANCO) ================= */
+.section-strategic-vision {
+  background: #ffffff !important;
+  border-top: 1px solid #e6e8ec !important;
+}
+
+.vision-card-editorial {
+  background: #ffffff !important;
+  border: 1px solid #e6e8ec !important;
+  box-shadow: 0 12px 35px rgba(17, 17, 20, 0.04) !important;
+}
+
+.vision-card-editorial:hover {
+  border-color: #008f7a !important;
+}
+
+.vision-tag-pill {
+  color: #008f7a !important;
+  background: #dcf5f0 !important;
+  border: 1px solid #008f7a !important;
+}
+
+.vision-heading-lg {
+  color: #111114 !important;
+}
+
+.vision-text-lead {
+  color: #5d5f69 !important;
+}
+
+.vision-text-lead strong {
+  color: #111114 !important;
+}
+
+.vision-list-item {
+  color: #5d5f69 !important;
+}
+
+.vision-list-item strong {
+  color: #111114 !important;
+}
+
+.vision-interactive-list .vision-item-dot {
+  display: none !important;
+}
+
+.vision-interactive-list .vision-list-item {
+  position: relative;
+  padding-left: 1.6rem !important;
+}
+
+.vision-interactive-list .vision-list-item::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  top: 0.05rem;
+  color: #008f7a !important;
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+/* ================= 6. PROYECTOS & FOOTER (ALTERNANCIA LIMPIA) ================= */
+.portfolio-section {
+  background-color: #dcf5f0 !important;
+  border-top: 1px solid #e6e8ec !important;
+}
+
+.section-title-wrap h2 {
+  color: #111114 !important;
+}
+
+.filter-group {
+  background: #ffffff !important;
+  border: 1px solid #e6e8ec !important;
+}
+
+.filter-btn {
+  color: #5d5f69 !important;
+}
+
+.filter-btn.active {
+  background: #008f7a !important;
+  color: #ffffff !important;
+}
+
+.project-card {
+  background: #ffffff !important;
+  border: 1px solid #e6e8ec !important;
+  box-shadow: 0 8px 25px rgba(17, 17, 20, 0.05) !important;
+}
+
+.card-title {
+  color: #ffffff !important;
+}
+
+.site-footer {
+  background: #ffffff !important;
+  border-top: 1px solid #e6e8ec !important;
+}
+
+.footer-cta h2 {
+  color: #111114 !important;
+}
+
+.footer-cta p {
+  color: #5d5f69 !important;
+}
+
+.btn-primary {
+  background: #008f7a !important;
+  color: #ffffff !important;
+}
+
+.btn-primary:hover {
+  background: #111114 !important;
+}
+
+.footer-bottom {
+  border-top: 1px solid #e6e8ec !important;
+}
+
+.footer-links a {
+  color: #5d5f69 !important;
+}
+
+.footer-links a:hover {
+  color: #008f7a !important;
+}
+
+.footer-copy {
+  color: #5d5f69 !important;
+}
+
+/* ================= ESTRELLITAS EN PROYECTOS DESEADOS ================= */
+.vision-interactive-list .vision-item-dot {
+  display: none !important; /* Oculta el circulito plano */
+}
+
+.vision-interactive-list .vision-list-item {
+  position: relative;
+  padding-left: 1.6rem !important; /* Deja espacio para la estrella */
+}
+
+.vision-interactive-list .vision-list-item::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  top: 0.05rem;
+  color: #00a896; /* Turquesa esmeralda acorde al nuevo estilo claro */
+  font-size: 0.85rem;
+  line-height: 1;
+  text-shadow: 0 0 6px rgba(0, 168, 150, 0.35);
+}
+
+/* ================= SISTEMA DE PESTAÑAS ================= */
+.nav-tab-btn {
+  background: transparent;
+  border: none;
+  color: #5d5f69;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-left: 1.5rem;
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: all 0.25s ease;
+}
+
+.nav-tab-btn:hover {
+  color: #008f7a;
+}
+
+.nav-tab-btn.active {
+  color: #008f7a;
+  font-weight: 700;
+  background: #dcf5f0;
+}
+
+/* Control de visibilidad de las vistas */
+.tab-view {
+  display: none;
+}
+
+.tab-view.active {
+  display: block;
+  animation: fadeInView 0.35s ease;
+}
+
+@keyframes fadeInView {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= CORRECCIÓN FORZADA DE PESTAÑAS ================= */
+.tab-view {
+  display: none !important;
+}
+
+.tab-view.active {
+  display: block !important;
+  animation: fadeInView 0.35s ease;
+}
+
+@keyframes fadeInView {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= 1. ENCABEZADO "SOBRE MÍ" UNIFICADO ================= */
+.section-bio-profile .section-header-block {
+  margin-bottom: 1.5rem !important;
+}
+
+.section-bio-profile .section-eyebrow {
+  color: #008f7a !important;
+}
+
+.section-bio-profile .section-heading-clean {
+  color: #111114 !important;
+}
+
+/* ================= 2. DESFASE DE SCROLL (HERRAMIENTAS FIJAS) ================= */
+.panel-container {
+  display: grid !important;
+  grid-template-columns: 340px 1fr !important;
+  gap: 4rem !important;
+  align-items: start !important; /* Permite que cada columna se desplace a su ritmo */
 }
 
 .side-col {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 5.5rem;
-  height: fit-content; /* Permite que el bloque se mueva de forma natural hasta el último pixel */
-  align-self: start;
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 6.5rem !important; /* Se fija a la altura adecuada al hacer scroll */
+  z-index: 10 !important;
 }
 
-/* ================= ANIMACIÓN FADE UP (DESDE ABAJO HACIA ARRIBA) ================= */
-.animate-fade-up {
-  opacity: 0;
-  transform: translateY(45px);
-  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+/* ================= 3. ETIQUETAS DE DISEÑO SIN RECUADRO ================= */
+.creative-accordion .role-tag {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  color: #008f7a !important;
+  font-weight: 700 !important;
+  font-size: 0.78rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
+  box-shadow: none !important;
 }
 
-/* Clase añadida automáticamente por JS al hacer scroll */
-.animate-fade-up.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+/* ================= EXPERIENCIA CREATIVA EN RECUADRO TURQUESA ================= */
+.creative-full-box {
+  background: #dcf5f0 !important; /* Mismo fondo turquesa pastel */
+  border: 1px solid #e6e8ec !important;
+  border-radius: 22px !important;
+  padding: 2.2rem !important;
+  box-shadow: 0 12px 35px rgba(17, 17, 20, 0.04) !important;
+  margin-bottom: 3rem !important;
 }
 
-/* Responsive para tablets y móviles */
-@media (max-width: 960px) {
-  .panel-container {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-  .side-col {
-    position: static;
-  }
-  .section-panel {
-    padding: 4.5rem 6%;
-  }
+.creative-full-box .section-eyebrow {
+  color: #008f7a !important;
 }
 
-/* ================= SECCIÓN PROYECTOS CON MÁRGENES ================= */
-.portfolio-section {
-  padding: 6rem 8% 4rem; /* 8% de margen a los lados, igual que las otras pantallas */
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  background-color: #08080a;
+.creative-full-box .section-heading-clean {
+  color: #111114 !important;
+  margin-bottom: 1.5rem !important;
 }
 
-/* Contenedor centrado para que no se pegue ni se expanda al infinito en pantallas gigantes */
-.section-header-wrap,
-.projects-grid {
-  max-width: 1380px;
-  margin-left: auto;
-  margin-right: auto;
+/* Acordeones en tarjetas blancas sobre fondo turquesa */
+.creative-accordion {
+  background: #ffffff !important;
+  border: 1px solid #e6e8ec !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 15px rgba(17, 17, 20, 0.03) !important;
+  transition: all 0.25s ease !important;
 }
 
-.projects-grid {
-  margin-bottom: 6rem;
+.creative-accordion[open] {
+  border-color: #008f7a !important;
 }
+
+.creative-summary {
+  padding: 1.2rem 1.4rem !important;
+}
+
+.creative-summary::after {
+  color: #008f7a !important;
+}
+
+.creative-content {
+  border-top: 1px solid #e6e8ec !important;
+  padding: 1.2rem 1.4rem !important;
+}
+
+/* ================= CONTENEDORES DE EXPERIENCIA EN BLANCO ================= */
+
+/* 1. Recuadro Creativo -> Fondo Blanco */
+.creative-full-box {
+  background: #ffffff !important;
+  border: 1px solid #e6e8ec !important;
+  box-shadow: 0 10px 30px rgba(17, 17, 20, 0.03) !important;
+}
+
+/* 2. Recuadro Otros Sectores -> Fondo Blanco */
+.retail-full-box {
+  background: #ffffff !important;
+  border: 1px solid #e6e8ec !important;
+  box-shadow: 0 10px 30px rgba(17, 17, 20, 0.03) !important;
+}
+
+/* 3. Desplegables interiores con fondo ligeramente diferenciado */
+.creative-accordion,
+.retail-full-box .company-accordion {
+  background: #fbfcfd !important;
+  border: 1px solid #e6e8ec !important;
+}
+
+.creative-accordion[open],
+.retail-full-box .company-accordion[open] {
+  background: #ffffff !important;
+  border-color: #008f7a !important;
+  box-shadow: 0 6px 20px rgba(17, 17, 20, 0.05) !important;
+}
+/* ================= SEPARACIÓN FORZADA ENTRE TARJETAS CREATIVAS ================= */
+.creative-accordion {
+  margin-bottom: 2rem !important; /* Espacio visible entre cada tarjeta */
+  display: block !important;
+}
+
+/* Evitamos espacio sobrante debajo de la última tarjeta */
+.creative-accordion:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Espacio entre el título y la primera tarjeta */
+.creative-full-box .section-header-block,
+.main-col .section-header-block {
+  margin-bottom: 2.2rem !important;
+}
+
+/* ================= DESPLEGABLES EN LÍNEA DE FORMACIÓN ================= */
+.timeline-accordion {
+  cursor: pointer;
+  padding: 0 !important; /* El relleno se traslada al summary y al content */
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.timeline-summary {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 1.6rem 2rem !important;
+  list-style: none !important;
+  user-select: none;
+}
+
+.timeline-summary::-webkit-details-marker {
+  display: none !important;
+}
+
+.timeline-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  width: 100%;
+}
+
+.timeline-header-info .timeline-school {
+  margin-bottom: 0 !important;
+}
+
+/* Icono dinámico + / - */
+.timeline-summary::after {
+  content: '+';
+  color: #008f7a;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-left: 1.5rem;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.timeline-accordion[open] .timeline-summary::after {
+  content: '−';
+  transform: rotate(180deg);
+}
+
+.timeline-content {
+  padding: 0.5rem 2rem 1.6rem 2rem;
+  border-top: 1px solid #e6e8ec;
+  animation: fadeInAccordion 0.35s ease;
+}
+
+.timeline-content .timeline-desc {
+  color: #5d5f69 !important;
+  margin: 0;
+  line-height: 1.65;
+}
+

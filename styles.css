@@ -1328,7 +1328,7 @@ body {
 .carousel-container {
   position: relative;
   width: 100%;
-  height: 420px;
+  height: 520px;
   background: #111114;
   overflow: hidden;
   border-top-left-radius: 20px;
@@ -1635,7 +1635,7 @@ body {
     padding-top: 1.5rem;
   }
   .carousel-container {
-    height: 260px;
+    height: 360px;
   }
 }
 
@@ -2028,4 +2028,294 @@ body {
     display: inline-block !important;
     vertical-align: baseline !important;
   }
+}
+
+/* ================= CASO DE ESTUDIO INTROSPECTION EN MODAL ================= */
+.project-modal-story {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.story-section h4 {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  color: var(--c-turquesa-oscuro);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 0.6rem;
+}
+
+.story-section p {
+  color: var(--c-gris-texto);
+  font-size: 0.98rem;
+  line-height: 1.75;
+  margin-bottom: 0.8rem;
+}
+
+.story-section strong {
+  color: var(--c-negro);
+}
+
+.story-section ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding-left: 0.5rem;
+}
+
+.story-section ul li {
+  position: relative;
+  padding-left: 1.4rem;
+  font-size: 0.94rem;
+  color: var(--c-gris-texto);
+  line-height: 1.6;
+}
+
+.story-section ul li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  top: 0.05rem;
+  color: var(--c-turquesa-oscuro);
+  font-size: 0.8rem;
+}
+
+/* Contenedor responsivo del reproductor de vídeo */
+.project-video-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #0b0b0d;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--c-gris-borde);
+  margin-top: 0.6rem;
+  box-shadow: 0 10px 25px rgba(17, 17, 20, 0.08);
+}
+
+.modal-project-video,
+.modal-project-iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+  display: block;
+}
+
+/* ================= CABECERA DUAL (2 FOTOS EN PARALELO) ================= */
+.project-dual-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.dual-header-item {
+  margin: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0b0b0d;
+  border: 1px solid var(--c-gris-borde);
+}
+
+.dual-header-item img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.dual-header-item figcaption {
+  font-size: 0.78rem;
+  color: var(--c-gris-texto);
+  padding: 0.6rem 0.8rem;
+  background: var(--c-blanco);
+  border-top: 1px solid var(--c-gris-borde);
+}
+
+/* ================= DISTRIBUCIÓN DIVIDIDA CON VISOR VERTICAL A LA DERECHA ================= */
+.project-split-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 3rem;
+  align-items: start;
+}
+
+.split-story-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Visor fijo (sticky) para acompañar la lectura del texto */
+.split-viewer-col {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 1.5rem;
+}
+
+.vertical-slider-box {
+  background: var(--c-blanco);
+  border: 1px solid var(--c-gris-borde);
+  border-radius: 18px;
+  padding: 1.2rem;
+  box-shadow: 0 10px 30px rgba(17, 17, 20, 0.05);
+}
+
+.viewer-tag {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--c-turquesa-oscuro);
+  letter-spacing: 1px;
+  margin-bottom: 0.8rem;
+}
+
+/* Marco vertical del visor (proporción 3:4 alargada) */
+.vertical-slider-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #0b0b0d;
+  border: 1px solid var(--c-gris-borde);
+}
+
+.v-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Muestra fotos verticales completas sin recortar */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.v-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Controles del visor (botones y contador) */
+.vertical-slider-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.v-btn {
+  background: var(--c-turquesa-claro);
+  border: 1px solid var(--c-turquesa-oscuro);
+  color: var(--c-turquesa-oscuro);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.v-btn:hover {
+  background: var(--c-turquesa-oscuro);
+  color: var(--c-blanco);
+}
+
+.v-counter {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--c-gris-texto);
+}
+
+/* Adaptación para pantallas pequeñas */
+@media (max-width: 900px) {
+  .project-dual-header {
+    grid-template-columns: 1fr;
+  }
+  .project-split-layout {
+    grid-template-columns: 1fr;
+  }
+  .split-viewer-col {
+    position: static;
+    margin-top: 1.5rem;
+  }
+  .vertical-slider-frame {
+    max-height: 480px;
+  }
+}
+
+/* ================= VISOR VERTICAL EN SIDEBAR DERECHA DEL MODAL ================= */
+.sidebar-viewer-block {
+  margin-top: 1rem;
+  border-top: 1px solid var(--c-gris-borde);
+  padding-top: 1.5rem;
+}
+
+.sidebar-vslider-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4; /* Proporción vertical estilizada */
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #0b0b0d;
+  border: 1px solid var(--c-gris-borde);
+  margin-top: 0.6rem;
+}
+
+.sidebar-vslide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Muestra las fotos verticales completas sin cortes */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-vslide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebar-vslider-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.8rem;
+}
+
+.sidebar-vslider-controls .v-btn {
+  background: var(--c-turquesa-claro);
+  border: 1px solid var(--c-turquesa-oscuro);
+  color: var(--c-turquesa-oscuro);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.sidebar-vslider-controls .v-btn:hover {
+  background: var(--c-turquesa-oscuro);
+  color: var(--c-blanco);
+}
+
+.sidebar-vslider-controls .v-counter {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--c-gris-texto);
 }

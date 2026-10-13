@@ -64,19 +64,77 @@ const projectsData = {
   // ÁMBITO ACADÉMICO & EXPERIMENTAL
   introspection: {
     title: "IntroSpection",
-    subtitle: "Espejo interactivo de autorreflexión emocional en colaboración conceptual con CUPRA.",
-    tags: "#SALUD EMOCIONAL · #GENERACIÓN Z · #HOGAR · #TFG",
-    disciplines: "Interacción Tangible, Diseño de Producto, Espacios y Dirección de Arte.",
-    tech: "Raspberry Pi, Pantalla Encastrada, Metacrilato Espejo corte láser, Barniz Candy degradado, Iluminación LED y Sensores.",
-    description: `
-      <p><strong>El Reto:</strong> En la era digital, la Generación Z se enfrenta a altos niveles de ansiedad debido a la validación externa en redes. El objetivo fue diseñar un objeto para el hogar alineado con la filosofía de CUPRA que fomentara la introspección honesta.</p>
-      <p><strong>La Solución:</strong> A diferencia de un espejo convencional, IntroSpection actúa como un canal sensible entre el yo visible y el yo invisible. Permite escanear, registrar y hacer seguimiento de las emociones diarias mediante una interfaz integrada en el reflejo, con opción de compartirlas.</p>
-      <p><strong>Desarrollo Técnico:</strong> Corte por láser en metacrilato espejo de 38x50 cm con marco de encastre, caja técnica trasera impresa en 3D con ventilación degradada e iluminación periférica LED en L.</p>
-    `,
+    subtitle: "Espejo interactivo para la autorreflexión emocional en el hogar · Brand Products x CUPRA",
+    tags: "#TFG · #ELISAVA · #CUPRA · #DiseñoInteractivo · #Python · #RaspberryPi",
+    disciplines: "Diseño de Interacción, UX/UI Tangible, Computer Vision, Diseño Paramétrico de Producto, Machine Learning.",
+    tech: "Raspberry Pi 3B+, Python (PyQt5, OpenCV, PyTorch, Hugging Face), Pantalla IPS DSI 5\", Cámara USB, Iluminación LED reactiva por MOSFET IRFZ44N, Metacrilato tipo espejo con degradado.",
     images: [
-      "assets/introspection-1.jpg",
-      "assets/introspection-2.jpg"
-    ]
+      "assets/introspection-1.tiff",
+      "assets/introspection-2.jpg",
+      "assets/introspection-3.jpg",
+      "assets/introspection-4.jpg",
+      "assets/introspection-5.jpg",
+      "assets/introspection-6.jpg"
+    ],
+    // Galería interactiva vertical que se colocará en la barra lateral derecha
+    sidebarGallery: [
+      { src: "assets/introspection-proto.jpg", title: "Prototipo físico completo" },
+      { src: "assets/introspection-ui.jpg", title: "Malla Voronoi en pantalla IPS" },
+      { src: "assets/introspection-hardware.jpg", title: "Circuito y Raspberry Pi 3B+" },
+      { src: "assets/introspection-espejo.jpg", title: "Pruebas de degradado láser" }
+    ],
+    description: `
+      <div class="project-modal-story">
+        
+        <!-- Bloque 1: El Reto y Concepto -->
+        <div class="story-section">
+          <h4>El Reto & Contexto</h4>
+          <p>
+            En la era digital, la Generación Z enfrenta un incremento alarmante de ansiedad y desconexión con sus propias emociones, condicionado por la exposición constante a modelos de vida idealizados en redes sociales. El espejo doméstico ha funcionado históricamente como un instrumento centrado en el juicio estético y la apariencia externa.
+          </p>
+          <p>
+            Bajo el marco de colaboración de <strong>CUPRA Lifestyle</strong> y la mención de Experiencias Interactivas en ELISAVA, el proyecto redefine este objeto cotidiano: transformar el acto rutinario de mirarse al espejo en un ritual íntimo de pausa, autoconocimiento y cuidado de la salud mental.
+          </p>
+        </div>
+
+        <!-- Bloque 2: Experiencia e Interacción -->
+        <div class="story-section">
+          <h4>La Experiencia Interactiva</h4>
+          <p>
+            El dispositivo no busca emitir juicios ni diagnósticos médicos cerrados, sino funcionar como una interfaz sensible y mediadora:
+          </p>
+          <ul>
+            <li><strong>Reconocimiento de expresión facial:</strong> Al situarse frente al espejo, una cámara capta el rostro y un modelo de aprendizaje profundo clasifica la expresión en 5 grados emocionales. Si la lectura automática no coincide con lo que la persona siente, esa discrepancia actúa como detonante para cuestionarse y matizar el estado real de forma consciente.</li>
+            <li><strong>Patrón celular Voronoi dinámico:</strong> Como puente estético con la identidad paramétrica de CUPRA, la pantalla proyecta una malla generativa basada en diagramas de Voronoi: a mayor nivel de bienestar, más densa y viva es la red; en momentos de tristeza o baja energía, la estructura se muestra vacía y fragmentada.</li>
+            <li><strong>Atmósfera lumínica reactiva:</strong> Un sistema de iluminación LED cálida modula su brillo de manera sutil según el estado anímico, envolviendo el entorno físico sin generar sobrecarga sensorial.</li>
+            <li><strong>Seguimiento & Red Íntima de Cuidado:</strong> Ofrece un registro semanal y mensual para identificar patrones de conducta, además de una opción para compartir el estado anímico con un círculo cercano sin necesidad de escribir ni la presión de recibir una respuesta inmediata.</li>
+          </ul>
+        </div>
+
+        <!-- Bloque 3: Morfología y Diseño de Producto -->
+        <div class="story-section">
+          <h4>Morfología & Lenguaje Formal CUPRA</h4>
+          <p>
+            La pieza (40 × 55 cm) rompe con la forma rectangular convencional adoptando una silueta trapezoidal con cortes angulares a 10°, evocando el triángulo característico del logotipo de CUPRA.
+          </p>
+          <p>
+            El cristal cuenta con un tratamiento especial: un degradado visual que va desde bordes exteriores en negro mate hasta un centro cromado nítido. Al mirar de frente, el reflejo es claro; al desviar la mirada a los extremos, el entorno se desvanece en penumbra, aislando al usuario de distracciones externas para propiciar un momento de introspección pura.
+          </p>
+        </div>
+
+        <!-- Bloque 4: Espacio para Vídeo Demostrativo -->
+        <div class="story-section video-section">
+          <h4>Video Demostrativo del Prototipo</h4>
+          <div class="project-video-wrapper">
+            <video controls poster="assets/introspection-1.jpg" class="modal-project-video">
+              <source src="assets/videos/introspection-demo.mp4" type="video/mp4">
+              Tu navegador no soporta el formato de vídeo.
+            </video>
+          </div>
+        </div>
+
+      </div>
+    `
   },
   encoded: {
     title: "ENCODED",
@@ -166,7 +224,7 @@ const projectsData = {
   }
 };
 
-// SELECTOR DE ÁMBITO (PROFESIONAL VS ACADÉMICO)
+// ================= SELECTOR DE ÁMBITO (PROFESIONAL VS ACADÉMICO) =================
 const filterButtons = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.project-card');
 const sectionHeading = document.getElementById('section-heading');
@@ -195,7 +253,7 @@ filterButtons.forEach(button => {
   });
 });
 
-// MODAL Y CARRUSEL
+// ================= MODAL Y CARRUSEL =================
 const modal = document.getElementById('project-modal');
 const modalCloseBtn = document.getElementById('modal-close-btn');
 const backdrop = document.querySelector('.modal-backdrop');
@@ -215,6 +273,7 @@ projectCards.forEach(card => {
 
     if (!data) return;
 
+    // Rellenar información base
     document.getElementById('modal-title').textContent = data.title;
     document.getElementById('modal-subtitle').textContent = data.subtitle;
     document.getElementById('modal-tags').textContent = data.tags;
@@ -222,7 +281,7 @@ projectCards.forEach(card => {
     document.getElementById('modal-disciplines').textContent = data.disciplines;
     document.getElementById('modal-tech').textContent = data.tech;
 
-    // Galería extra
+    // Galería extra general si existe en proyectos como Sensing Tex
     const galleryContainer = document.getElementById('modal-gallery');
     galleryContainer.innerHTML = '';
 
@@ -266,9 +325,60 @@ projectCards.forEach(card => {
       galleryContainer.appendChild(grid);
     }
 
-    currentProjectImages = data.images;
+    // Configurar carrusel superior (2 fotos o más)
+    currentProjectImages = data.images || [];
     currentSlideIndex = 0;
     setupCarousel();
+
+    // ================= VISOR VERTICAL LATERAL (DERECHA) =================
+    const sidebarEl = document.querySelector('.modal-sidebar');
+    const existingViewer = document.getElementById('sidebar-vertical-viewer');
+    if (existingViewer) existingViewer.remove();
+
+    if (data.sidebarGallery && data.sidebarGallery.length > 0) {
+      const viewerBlock = document.createElement('div');
+      viewerBlock.className = 'info-block sidebar-viewer-block';
+      viewerBlock.id = 'sidebar-vertical-viewer';
+      
+      viewerBlock.innerHTML = `
+        <h5>Detalles & Proceso</h5>
+        <div class="sidebar-vslider-frame">
+          ${data.sidebarGallery.map((item, idx) => `
+            <img src="${item.src}" class="sidebar-vslide ${idx === 0 ? 'active' : ''}" alt="${item.title || 'Detalle'}">
+          `).join('')}
+        </div>
+        <div class="sidebar-vslider-controls">
+          <button type="button" class="v-btn" id="sb-prev" aria-label="Anterior">❮</button>
+          <span class="v-counter" id="sb-counter">1 / ${data.sidebarGallery.length}</span>
+          <button type="button" class="v-btn" id="sb-next" aria-label="Siguiente">❯</button>
+        </div>
+      `;
+
+      sidebarEl.appendChild(viewerBlock);
+
+      let sbIndex = 0;
+      const sbSlides = viewerBlock.querySelectorAll('.sidebar-vslide');
+      const sbCounter = viewerBlock.querySelector('#sb-counter');
+      const btnPrev = viewerBlock.querySelector('#sb-prev');
+      const btnNext = viewerBlock.querySelector('#sb-next');
+
+      function updateSbSlider() {
+        sbSlides.forEach((img, i) => img.classList.toggle('active', i === sbIndex));
+        if (sbCounter) sbCounter.textContent = `${sbIndex + 1} / ${sbSlides.length}`;
+      }
+
+      btnPrev.onclick = (e) => {
+        e.stopPropagation();
+        sbIndex = (sbIndex === 0) ? sbSlides.length - 1 : sbIndex - 1;
+        updateSbSlider();
+      };
+
+      btnNext.onclick = (e) => {
+        e.stopPropagation();
+        sbIndex = (sbIndex === sbSlides.length - 1) ? 0 : sbIndex + 1;
+        updateSbSlider();
+      };
+    }
 
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -278,6 +388,10 @@ projectCards.forEach(card => {
 function closeModal() {
   modal.classList.remove('active');
   document.body.style.overflow = 'auto';
+
+  // Quita el visor lateral para no acumularlo en el siguiente proyecto que se abra
+  const existingViewer = document.getElementById('sidebar-vertical-viewer');
+  if (existingViewer) existingViewer.remove();
 }
 
 modalCloseBtn.addEventListener('click', closeModal);
@@ -391,7 +505,7 @@ function typeEffect() {
 
 document.addEventListener("DOMContentLoaded", typeEffect);
 
-// ANIMACIÓN FADE UP AL HACER SCROLL (INTERSECTION OBSERVER)
+// ================= ANIMACIÓN FADE UP AL HACER SCROLL =================
 document.addEventListener("DOMContentLoaded", () => {
   const animatedElements = document.querySelectorAll(".animate-fade-up");
 
@@ -433,6 +547,7 @@ if (heroSection && heroReveal) {
   });
 }
 
+// ================= CONTROL DE PESTAÑAS =================
 const tabButtons = document.querySelectorAll('.nav-tab-btn');
 const tabViews = document.querySelectorAll('.tab-view');
 const navLogo = document.getElementById('nav-logo');
@@ -467,7 +582,7 @@ tabButtons.forEach(btn => {
 if (navLogo) {
   navLogo.addEventListener('click', (e) => {
     e.preventDefault();
-    switchTab('tab-cv');
+    switchTab('tab-sobremi');
   });
 }
 
@@ -481,7 +596,6 @@ if (menuToggle && navLinks) {
     navLinks.classList.toggle('open');
   });
 
-  // Cierra el menú al pulsar cualquier pestaña o enlace
   navLinks.querySelectorAll('button, a').forEach(el => {
     el.addEventListener('click', () => {
       menuToggle.classList.remove('active');

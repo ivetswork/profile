@@ -7,15 +7,14 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
-<!-- Navegación con las 5 pestañas -->
-  <!-- Navegación -->
+<body>
+
+  <!-- Navegación con 5 pestañas -->
   <header class="navbar">
     <a href="#" class="logo" id="nav-logo">IVET I<span class="dot">.</span>B<span class="dot">.</span></a>
     
-    <!-- Botón hamburguesa para móvil -->
     <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
       <span class="hamburger-line"></span>
       <span class="hamburger-line"></span>
@@ -32,9 +31,8 @@
     </nav>
   </header>
 
-  <!-- ================= 1. PESTAÑA: SOBRE MÍ & VISIÓN ================= -->
+  <!-- ================= 1. PESTAÑA: SOBRE MÍ ================= -->
   <main id="tab-sobremi" class="tab-view active">
-    <!-- Hero interactivo -->
     <section class="section-hero" id="hero-section">
       <div class="hero-inner hero-dark">
         <h1 class="hero-title">
@@ -64,19 +62,13 @@
       </div>
     </section>
 
-    <!-- Bio y Perfil con Memoji integrado -->
     <section id="about" class="section-panel section-bio-profile">
       <div class="bio-profile-wrapper">
-        
-        <!-- Memoji anclado a la base inferior izquierda -->
         <div class="memoji-anchor-wrap animate-fade-up">
           <img src="assets/ivet-pensativa-2.png" alt="Ivet Ilustración Pensativa" class="memoji-character">
         </div>
 
-        <!-- Columna de información: Tarjeta de datos + Texto Bio -->
         <div class="bio-content-area">
-          
-          <!-- Tarjeta de datos personales compacta -->
           <aside class="profile-card-clean animate-fade-up">
             <div class="profile-details">
               <h3>Ivet Izquierdo Blanch</h3>
@@ -92,7 +84,6 @@
             </div>
           </aside>
 
-          <!-- Texto descriptivo y cita -->
           <article class="bio-text-column animate-fade-up">
             <div class="section-header-block">
               <span class="section-eyebrow">Perfil</span>
@@ -112,12 +103,10 @@
               </div>
             </div>
           </article>
-
         </div>
       </div>
     </section>
 
-    <!-- Visión estratégica -->
     <section class="section-panel section-strategic-vision">
       <div class="vision-container animate-fade-up">
         <article class="vision-card-editorial">
@@ -159,97 +148,90 @@
   <!-- ================= 2. PESTAÑA: FORMACIÓN ACADÉMICA ================= -->
   <main id="tab-formacion" class="tab-view">
     <section id="formacion" class="section-panel section-timeline">
-  <div class="timeline-layout-wrapper">
-    
-    <!-- Columna del Memoji vertical -->
-    <div class="timeline-memoji-col">
-      <img src="assets/ivet-estudiante.png" alt="Ivet Estudiante" class="timeline-memoji-img">
-    </div>
-
-    <!-- Columna de la línea de tiempo -->
-    <div class="timeline-container">
-      <div class="section-header-block">
-        <span class="section-eyebrow">Trayectoria</span>
-        <h3 class="section-heading-clean">Formación académica</h3>
-      </div>
-      <div class="timeline-track">
-          <!-- Elisava -->
-          <article class="timeline-item animate-fade-up">
-            <div class="timeline-node"><span class="timeline-dot"></span></div>
-            <details class="timeline-card timeline-accordion" open>
-              <summary class="timeline-summary">
-                <div class="timeline-header-info">
-                  <span class="timeline-dates">2021 – 2025</span>
-                  <h4 class="timeline-title">Grado en Diseño e Innovación con mención en Experiéncias Interactivas</h4>
-                  <span class="timeline-school">Elisava, Barcelona School of Design and Engineering</span>
-                </div>
-              </summary>
-              <div class="timeline-content">
-                <p class="timeline-desc">
-                  Comencé con una base transversal explorando metodologías de conceptualización, dibujo, materiales, texturas y software gráfico digital. A partir del segundo año me enfoqué en el diseño interactivo, experimentando con computación física, sensórica básica (Arduino) y programación creativa para comprender la interacción desde la materia. En los últimos cursos consolidé herramientas de contextualización e investigación, culminando en proyectos transversales y de especialidad planteados para entornos reales y orientados al mercado.
-                </p>
-              </div>
-            </details>
-          </article>
-
-          <!-- OFFF Festival -->
-          <article class="timeline-item animate-fade-up">
-            <div class="timeline-node"><span class="timeline-dot"></span></div>
-            <details class="timeline-card timeline-accordion">
-              <summary class="timeline-summary">
-                <div class="timeline-header-info">
-                  <span class="timeline-dates">Disseny Hub Barcelona · Abr 2024</span>
-                  <h4 class="timeline-title">Voluntariado · OFFF Festival Barcelona</h4>
-                  <span class="timeline-school">Festival Internacional de Creatividad, Arte y Diseño Digital</span>
-                </div>
-              </summary>
-              <div class="timeline-content">
-                <p class="timeline-desc">
-                  Soporte organizativo, asistencia en espacios y coordinación en salas. Inmersión directa con la comunidad internacional de diseño digital, dirección de arte e interacción.
-                </p>
-              </div>
-            </details>
-          </article>
-
-          <!-- CFGS Marketing -->
-          <article class="timeline-item animate-fade-up">
-            <div class="timeline-node"><span class="timeline-dot"></span></div>
-            <details class="timeline-card timeline-accordion">
-              <summary class="timeline-summary">
-                <div class="timeline-header-info">
-                  <span class="timeline-dates">2020 – 2022</span>
-                  <h4 class="timeline-title">CFGS en Marketing y Publicidad</h4>
-                  <span class="timeline-school">Investigación de Mercados & Comunicación Estratégica</span>
-                </div>
-              </summary>
-              <div class="timeline-content">
-                <p class="timeline-desc">
-                  Planificación estratégica, análisis comercial de audiencias y comportamiento del consumidor. Soporte en gestión administrativa de proyectos y manejo de Photoshop para el retoque fotográfico, maquetación básica y diseño de contenidos visuales para campañas.
-                </p>
-              </div>
-            </details>
-          </article>
-
-          <!-- Bachillerato -->
-          <article class="timeline-item animate-fade-up">
-            <div class="timeline-node"><span class="timeline-dot"></span></div>
-            <details class="timeline-card timeline-accordion">
-              <summary class="timeline-summary">
-                <div class="timeline-header-info">
-                  <span class="timeline-dates">2018 – 2020</span>
-                  <h4 class="timeline-title">Bachillerato Social y Humanístico</h4>
-                  <span class="timeline-school">Institut de Castelldefels</span>
-                </div>
-              </summary>
-              <div class="timeline-content">
-                <p class="timeline-desc">
-                  Base formativa en ciencias sociales, economía, comunicación y análisis crítico de contextos socioculturales.
-                </p>
-              </div>
-            </details>
-          </article>
+      <div class="timeline-layout-wrapper">
+        <div class="timeline-memoji-col">
+          <img src="assets/ivet-estudiante.png" alt="Ivet Estudiante" class="timeline-memoji-img">
         </div>
-      </div>
+
+        <div class="timeline-container">
+          <div class="section-header-block">
+            <span class="section-eyebrow">Trayectoria</span>
+            <h3 class="section-heading-clean">Formación académica</h3>
+          </div>
+          <div class="timeline-track">
+            <article class="timeline-item animate-fade-up">
+              <div class="timeline-node"><span class="timeline-dot"></span></div>
+              <details class="timeline-card timeline-accordion" open>
+                <summary class="timeline-summary">
+                  <div class="timeline-header-info">
+                    <span class="timeline-dates">2021 – 2025</span>
+                    <h4 class="timeline-title">Grado en Diseño e Innovación con mención en Experiéncias Interactivas</h4>
+                    <span class="timeline-school">Elisava, Barcelona School of Design and Engineering</span>
+                  </div>
+                </summary>
+                <div class="timeline-content">
+                  <p class="timeline-desc">
+                    Comencé con una base transversal explorando metodologías de conceptualización, dibujo, materiales, texturas y software gráfico digital. A partir del segundo año me enfoqué en el diseño interactivo, experimentando con computación física, sensórica básica (Arduino) y programación creativa para comprender la interacción desde la materia. En los últimos cursos consolidé herramientas de contextualización e investigación, culminando en proyectos transversales y de especialidad planteados para entornos reales y orientados al mercado.
+                  </p>
+                </div>
+              </details>
+            </article>
+
+            <article class="timeline-item animate-fade-up">
+              <div class="timeline-node"><span class="timeline-dot"></span></div>
+              <details class="timeline-card timeline-accordion">
+                <summary class="timeline-summary">
+                  <div class="timeline-header-info">
+                    <span class="timeline-dates">Disseny Hub Barcelona · Abr 2024</span>
+                    <h4 class="timeline-title">Voluntariado · OFFF Festival Barcelona</h4>
+                    <span class="timeline-school">Festival Internacional de Creatividad, Arte y Diseño Digital</span>
+                  </div>
+                </summary>
+                <div class="timeline-content">
+                  <p class="timeline-desc">
+                    Soporte organizativo, asistencia en espacios y coordinación en salas. Inmersión directa con la comunidad internacional de diseño digital, dirección de arte e interacción.
+                  </p>
+                </div>
+              </details>
+            </article>
+
+            <article class="timeline-item animate-fade-up">
+              <div class="timeline-node"><span class="timeline-dot"></span></div>
+              <details class="timeline-card timeline-accordion">
+                <summary class="timeline-summary">
+                  <div class="timeline-header-info">
+                    <span class="timeline-dates">2020 – 2022</span>
+                    <h4 class="timeline-title">CFGS en Marketing y Publicidad</h4>
+                    <span class="timeline-school">Investigación de Mercados & Comunicación Estratégica</span>
+                  </div>
+                </summary>
+                <div class="timeline-content">
+                  <p class="timeline-desc">
+                    Planificación estratégica, análisis comercial de audiencias y comportamiento del consumidor. Soporte en gestión administrativa de proyectos y manejo de Photoshop para el retoque fotográfico, maquetación básica y diseño de contenidos visuales para campañas.
+                  </p>
+                </div>
+              </details>
+            </article>
+
+            <article class="timeline-item animate-fade-up">
+              <div class="timeline-node"><span class="timeline-dot"></span></div>
+              <details class="timeline-card timeline-accordion">
+                <summary class="timeline-summary">
+                  <div class="timeline-header-info">
+                    <span class="timeline-dates">2018 – 2020</span>
+                    <h4 class="timeline-title">Bachillerato Social y Humanístico</h4>
+                    <span class="timeline-school">Institut de Castelldefels</span>
+                  </div>
+                </summary>
+                <div class="timeline-content">
+                  <p class="timeline-desc">
+                    Base formativa en ciencias sociales, economía, comunicación y análisis crítico de contextos socioculturales.
+                  </p>
+                </div>
+              </details>
+            </article>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -258,17 +240,12 @@
   <main id="tab-creativo" class="tab-view">
     <section class="section-panel section-skills-exp">
       <div class="panel-container">
-        <!-- Izquierda: Herramientas con Memoji Sentado -->
         <aside class="side-col animate-fade-up">
           <div class="skills-card-clean memoji-perched-box">
-            
-            <!-- Memoji sentado sobre el borde superior -->
             <img src="assets/ivet-sentada.png" alt="Ivet Sentada" class="memoji-sitting-img">
-
             <span class="skills-sidebar-label">Tecnologías</span>
             <span class="skills-sidebar-sub">Nivel de Dominio</span>
             <div class="skills-rating-grid">
-              <!-- (Tus filas de habilidades se mantienen igual) -->
               <div class="skill-row"><span class="skill-name">Figma</span><div class="rating-dots"><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating"></span><span class="dot-rating"></span></div></div>
               <div class="skill-row"><span class="skill-name">Photoshop</span><div class="rating-dots"><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating"></span></div></div>
               <div class="skill-row"><span class="skill-name">Illustrator</span><div class="rating-dots"><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating"></span><span class="dot-rating"></span></div></div>
@@ -277,7 +254,7 @@
               <div class="skill-row"><span class="skill-name">Shapr3D</span><div class="rating-dots"><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating"></span><span class="dot-rating"></span><span class="dot-rating"></span></div></div>
               <div class="skill-row"><span class="skill-name">AutoCAD</span><div class="rating-dots"><span class="dot-rating active"></span><span class="dot-rating"></span><span class="dot-rating"></span><span class="dot-rating"></span><span class="dot-rating"></span></div></div>
               <div class="skill-row"><span class="skill-name">Max/MSP</span><div class="rating-dots"><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating"></span><span class="dot-rating"></span><span class="dot-rating"></span></div></div>
-              <div class="skill-row"><span class="skill-name">Arduino</span><div class="rating-dots"><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating"></span><span class="dot-rating"></span></div></div>
+              <div class="skill-row"><span class="skill-name">Arduino</span><div class="rating-dots"><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating"></span><span class="dot-rating"></span><span class="dot-rating"></span></div></div>
               <div class="skill-row"><span class="skill-name">Processing</span><div class="rating-dots"><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating"></span><span class="dot-rating"></span><span class="dot-rating"></span></div></div>
               <div class="skill-row"><span class="skill-name">HTML / CSS / JS</span><div class="rating-dots"><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating"></span><span class="dot-rating"></span><span class="dot-rating"></span></div></div>
               <div class="skill-row"><span class="skill-name">Wordpress</span><div class="rating-dots"><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating"></span><span class="dot-rating"></span><span class="dot-rating"></span></div></div>
@@ -285,13 +262,12 @@
               <div class="skill-row"><span class="skill-name">Midjourney</span><div class="rating-dots"><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating"></span><span class="dot-rating"></span></div></div>
               <div class="skill-row"><span class="skill-name">Adobe Firefly</span><div class="rating-dots"><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating"></span><span class="dot-rating"></span></div></div>
               <div class="skill-row"><span class="skill-name">Google Workspace</span><div class="rating-dots"><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating"></span></div></div>
-              <div class="skill-row"><span class="skill-name">Apps Script</span><div class="rating-dots"><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating"></span></div></div>
-              <div class="skill-row"><span class="skill-name">Odoo CRM</span><div class="rating-dots"><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating"></span><span class="dot-rating"></span></div></div>
+              <div class="skill-row"><span class="skill-name">Apps Script</span><div class="rating-dots"><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating"></span><span class="dot-rating"></span><span class="dot-rating"></span></div></div>
+              <div class="skill-row"><span class="skill-name">Odoo CRM</span><div class="rating-dots"><span class="dot-rating active"></span><span class="dot-rating active"></span><span class="dot-rating"></span><span class="dot-rating"></span><span class="dot-rating"></span></div></div>
             </div>
           </div>
         </aside>
 
-        <!-- Derecha: Empresas de Diseño -->
         <div class="main-col">
           <div class="creative-full-box">
             <div class="section-header-block">
@@ -300,7 +276,6 @@
             </div>
 
             <div class="design-roles-list">
-              <!-- Sensing Tex -->
               <details class="creative-accordion" open>
                 <summary class="creative-summary">
                   <div class="creative-header-info">
@@ -323,7 +298,6 @@
                 </div>
               </details>
 
-              <!-- Radios Novikov -->
               <details class="creative-accordion">
                 <summary class="creative-summary">
                   <div class="creative-header-info">
@@ -346,7 +320,6 @@
                 </div>
               </details>
 
-              <!-- El Txoko -->
               <details class="creative-accordion">
                 <summary class="creative-summary">
                   <div class="creative-header-info">
@@ -374,12 +347,9 @@
   </main>
 
   <!-- ================= 4. PESTAÑA: OTROS SECTORES ================= -->
-  <!-- ================= 4. PESTAÑA: OTROS SECTORES ================= -->
   <main id="tab-otros" class="tab-view">
     <section class="section-panel" style="background-color: var(--c-blanco);">
       <div class="retail-layout-wrapper">
-        
-        <!-- 1. Columna Izquierda: Tarjeta con los desplegables de empresas -->
         <div class="retail-full-box animate-fade-up">
           <div class="retail-header">
             <div class="section-header-block">
@@ -393,8 +363,6 @@
 
           <div class="retail-companies">
             <div class="companies-accordion-grid">
-              
-              <!-- 1. Exposición Dalí -->
               <details class="company-accordion">
                 <summary class="company-summary">
                   <div class="company-heading">
@@ -409,7 +377,6 @@
                 </div>
               </details>
 
-              <!-- 2. Ikea -->
               <details class="company-accordion">
                 <summary class="company-summary">
                   <div class="company-heading">
@@ -424,7 +391,6 @@
                 </div>
               </details>
 
-              <!-- 3. World Duty Free -->
               <details class="company-accordion">
                 <summary class="company-summary">
                   <div class="company-heading">
@@ -439,7 +405,6 @@
                 </div>
               </details>
 
-              <!-- 4. Barça L&M -->
               <details class="company-accordion">
                 <summary class="company-summary">
                   <div class="company-heading">
@@ -454,7 +419,6 @@
                 </div>
               </details>
 
-              <!-- 5. Fedefarma -->
               <details class="company-accordion">
                 <summary class="company-summary">
                   <div class="company-heading">
@@ -469,7 +433,6 @@
                 </div>
               </details>
 
-              <!-- 6. El Txoko -->
               <details class="company-accordion">
                 <summary class="company-summary">
                   <div class="company-heading">
@@ -484,7 +447,6 @@
                 </div>
               </details>
 
-              <!-- 7. La Tagliatella -->
               <details class="company-accordion">
                 <summary class="company-summary">
                   <div class="company-heading">
@@ -499,7 +461,6 @@
                 </div>
               </details>
 
-              <!-- 8. Ametller Origen -->
               <details class="company-accordion">
                 <summary class="company-summary">
                   <div class="company-heading">
@@ -514,7 +475,6 @@
                 </div>
               </details>
 
-              <!-- 9. Caprabo -->
               <details class="company-accordion">
                 <summary class="company-summary">
                   <div class="company-heading">
@@ -529,7 +489,6 @@
                 </div>
               </details>
 
-              <!-- 10. Canel Rolls -->
               <details class="company-accordion">
                 <summary class="company-summary">
                   <div class="company-heading">
@@ -544,7 +503,6 @@
                 </div>
               </details>
 
-              <!-- 11. Burger King -->
               <details class="company-accordion">
                 <summary class="company-summary">
                   <div class="company-heading">
@@ -559,7 +517,6 @@
                 </div>
               </details>
 
-              <!-- 12. Domino's Pizza -->
               <details class="company-accordion">
                 <summary class="company-summary">
                   <div class="company-heading">
@@ -573,23 +530,18 @@
                   <p>Recepción de comandas, atención telefónica y coordinación de tiempos de entrega.</p>
                 </div>
               </details>
-
            </div>
           </div>
         </div>
 
-        <!-- 2. Columna Derecha: Memoji Vertical -->
         <aside class="retail-memoji-col animate-fade-up">
           <div class="retail-memoji-sticky">
             <img src="assets/ivet-otros-sectores.png" alt="Ivet Otros Sectores" class="retail-memoji-img">
           </div>
         </aside>
-
       </div>
     </section>
   </main>
-
-      
 
   <!-- ================= 5. PESTAÑA: PROYECTOS ================= -->
   <main id="tab-proyectos" class="tab-view">
@@ -613,7 +565,6 @@
               <span class="featured-badge">★ DESTACADO</span>
               <span class="pill">UI/UX Web</span>
               <span class="pill">Producto Interactivo</span>
-              <span class="pill">Desarrollo de Software</span>
             </div>
             <div class="card-overlay">
               <span class="tag">#Sep 2025 – Actualidad · #Smart Textiles</span>
@@ -632,7 +583,6 @@
               <span class="featured-badge">★ DESTACADO</span>
               <span class="pill">Espacio</span>
               <span class="pill">Interacción</span>
-              <span class="pill">Max MSP</span>
             </div>
             <div class="card-overlay">
               <span class="tag">#Ene 2025 – May 2025 · #Escape Room</span>
@@ -650,7 +600,6 @@
             <div class="card-badges">
               <span class="pill">Gráfico</span>
               <span class="pill">Editorial</span>
-              <span class="pill">UX/UI</span>
             </div>
             <div class="card-overlay">
               <span class="tag">#Editorial · #Identidad · #Figma</span>
@@ -661,15 +610,14 @@
           </div>
         </article>
 
-        <!-- IntroSpection: TFG x CUPRA -->
-        <article class="project-card is-featured" data-scope="academico" data-project="introspection">
+        <!-- 4. IntroSpection -->
+        <article class="project-card is-featured hide" data-scope="academico" data-project="introspection">
           <div class="card-media">
             <img src="assets/introspection-1.jpg" alt="IntroSpection - Espejo Interactivo CUPRA" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80'">
             <div class="card-badges">
               <span class="featured-badge">★ TFG DESTACADO</span>
               <span class="pill">Interacción</span>
               <span class="pill">CUPRA</span>
-              <span class="pill">Computer Vision</span>
             </div>
             <div class="card-overlay">
               <span class="tag">#ELISAVA · #Salud Emocional · #Python</span>
@@ -687,7 +635,6 @@
             <div class="card-badges">
               <span class="featured-badge">★ TOP PROJECT</span>
               <span class="pill">Interacción</span>
-              <span class="pill">Producto</span>
               <span class="pill">Gamificación</span>
             </div>
             <div class="card-overlay">
@@ -706,7 +653,6 @@
             <div class="card-badges">
               <span class="featured-badge">★ TOP PROJECT</span>
               <span class="pill">Wearables</span>
-              <span class="pill">Interacción</span>
               <span class="pill">Especulativo</span>
             </div>
             <div class="card-overlay">
@@ -721,11 +667,10 @@
         <!-- 7. Dear Data -->
         <article class="project-card hide" data-scope="academico" data-project="deardata">
           <div class="card-media">
-            <img src="assets/deardata-1.jpg" alt="Dear Data" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80'">
+            <img src="assets/projects/deardata/portada.png" alt="Dear Data" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80'">
             <div class="card-badges">
               <span class="pill">Data Viz</span>
               <span class="pill">Web Interactiva</span>
-              <span class="pill">Gráfico</span>
             </div>
             <div class="card-overlay">
               <span class="tag">#Recolección · #Análisis · #Phygital</span>
@@ -742,7 +687,6 @@
             <img src="assets/phonecare-1.jpg" alt="Phone Care" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80'">
             <div class="card-badges">
               <span class="pill">Producto</span>
-              <span class="pill">Interacción</span>
               <span class="pill">Diseño Crítico</span>
             </div>
             <div class="card-overlay">
@@ -760,8 +704,7 @@
             <img src="assets/tiovivo-1.jpg" alt="Tiovivo Interactivo" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80'">
             <div class="card-badges">
               <span class="pill">Espacio</span>
-              <span class="pill">Producto</span>
-              <span class="pill">Interacción</span>
+              <span class="pill">Sensórica</span>
             </div>
             <div class="card-overlay">
               <span class="tag">#Espacio Público · #Lúdico · #Sensórica</span>
@@ -779,7 +722,6 @@
             <div class="card-badges">
               <span class="pill">Hardware</span>
               <span class="pill">Sonido</span>
-              <span class="pill">Interacción</span>
             </div>
             <div class="card-overlay">
               <span class="tag">#Arduino · #Servomotores · #Música Tangible</span>
@@ -797,7 +739,6 @@
             <div class="card-badges">
               <span class="pill">Software</span>
               <span class="pill">DIY Hardware</span>
-              <span class="pill">Gamificación</span>
             </div>
             <div class="card-overlay">
               <span class="tag">#Processing · #Arduino · #Sensórica DIY</span>
@@ -829,7 +770,6 @@
         <div class="modal-details-grid">
           <div class="modal-main-desc">
             <div id="modal-description"></div>
-            <div id="modal-gallery" class="modal-gallery"></div>
           </div>
           <div class="modal-sidebar">
             <div class="info-block">
@@ -840,13 +780,22 @@
               <h5>Tecnología / Hardware</h5>
               <p id="modal-tech"></p>
             </div>
+
+            <!-- BOTÓN DIRECTO PARA ABRIR LA GALERÍA -->
+            <div class="info-block sidebar-gallery-block" id="sidebar-gallery-block" style="display: none;">
+              <h5>Documentación del proceso</h5>
+              <button type="button" class="btn-open-gallery" id="btn-open-gallery">
+                <span class="btn-icon">🖼️</span>
+                <span id="btn-gallery-text">Ver galería completa</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- FOOTER & CIERRE DE CONTACTO (COMÚN) -->
+  <!-- FOOTER COMÚN -->
   <footer class="site-footer">
     <div class="footer-cta">
       <span class="badge">Contacto & Colaboraciones</span>
@@ -864,6 +813,23 @@
       <p class="footer-copy">© 2026 Ivet Izquierdo Blanch · Diseñado y desarrollado con código limpio.</p>
     </div>
   </footer>
+
+  <!-- MODAL LIGHTBOX CON NAVEGACIÓN COMPLETA -->
+  <div id="lightbox-modal" class="lightbox-modal">
+    <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+    <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar imagen">&times;</button>
+    
+    <button class="lightbox-nav-btn prev" id="lightbox-prev" aria-label="Foto anterior">&#10094;</button>
+    <button class="lightbox-nav-btn next" id="lightbox-next" aria-label="Siguiente foto">&#10095;</button>
+
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="Imagen ampliada">
+      <div class="lightbox-info">
+        <p id="lightbox-caption" class="lightbox-caption"></p>
+        <span id="lightbox-counter" class="lightbox-counter"></span>
+      </div>
+    </div>
+  </div>
 
   <script src="main.js"></script>
 </body>
